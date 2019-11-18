@@ -36,6 +36,7 @@ namespace DreamLeague.Inputs
                 try
                 {
                     return teamSheetReader.Read(Path.Combine(path, fileName));
+                    
                 }
                 catch
                 {

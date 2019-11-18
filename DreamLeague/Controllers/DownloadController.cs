@@ -1,4 +1,5 @@
-﻿using DreamLeague.Services;
+﻿using DreamLeague.DAL;
+using DreamLeague.Services;
 using System.Web.Mvc;
 
 namespace DreamLeague.Controllers
@@ -24,9 +25,11 @@ namespace DreamLeague.Controllers
 
         public FileResult Download(string fileName)
         {
+            
             var fileBytes = fileService.GetBytesFromFile(fileName);
-
+                       
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
+
     }
 }

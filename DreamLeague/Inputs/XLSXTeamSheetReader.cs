@@ -22,17 +22,20 @@ namespace DreamLeague.Inputs
             for (int i = 2; i < sheet1.Dimension.End.Column; i++)
             {
                 var manager = sheet1.Cells[1, i].Value;
+                var managerBalance = sheet1.Cells[3, i].Value;
+
                 if (manager != null)
                 {
-                    AddTeam(manager.ToString().Trim(), 1, i);
+                    AddTeam(manager.ToString().Trim(), managerBalance.ToString().Trim(), 1, i);
 
                     totalManagers++;
                 }
 
                 var manager2 = sheet1.Cells[36, i].Value;
+                var managerBalance2 = sheet1.Cells[38, i].Value;
                 if (manager2 != null)
                 {
-                    AddTeam(manager2.ToString().Trim(), 36, i);
+                    AddTeam(manager2.ToString().Trim(), managerBalance2.ToString().Trim(), 36, i);
 
                     totalManagers++;
                 }
@@ -46,12 +49,12 @@ namespace DreamLeague.Inputs
 
         }
 
-        private void AddTeam(string manager, int row, int column)
+        private void AddTeam(string manager, string managerBalance, int row, int column)
         {
             const int increment = 2;
             row += 3;
 
-            TeamSheetTeam teamSheetTeam = new TeamSheetTeam(manager);
+            TeamSheetTeam teamSheetTeam = new TeamSheetTeam(manager, managerBalance);
 
             var goalkeeper1 = sheet1.Cells[row, column].Value;
             if (goalkeeper1 != null)

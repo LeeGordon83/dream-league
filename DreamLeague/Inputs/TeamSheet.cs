@@ -17,6 +17,8 @@ namespace DreamLeague.Inputs
     {
         public string Manager { get; set; }
 
+        public string ManagerBalance { get; set; }
+
         public List<TeamSheetPlayer> Players { get; set; }
 
         public List<TeamSheetGoalKeeper> GoalKeepers { get; set; }
@@ -27,9 +29,10 @@ namespace DreamLeague.Inputs
             Players = new List<TeamSheetPlayer>();
         }
 
-        public TeamSheetTeam(string manager) : this()
+        public TeamSheetTeam(string manager, string managerBalance) : this()
         {
             Manager = manager;
+            ManagerBalance = managerBalance;
         }
     }
 

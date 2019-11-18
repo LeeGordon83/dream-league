@@ -29,6 +29,7 @@ namespace DreamLeague.Inputs
                     db.ManagerPlayers.RemoveRange(db.ManagerPlayers.Where(x => x.ManagerId == managerId));
                     MapTeams(team, managerId);
                     MapPlayers(team, managerId);
+
                 }
             }
 
@@ -88,5 +89,6 @@ namespace DreamLeague.Inputs
                 }
             }
         }
-    }
+
+      }
 }

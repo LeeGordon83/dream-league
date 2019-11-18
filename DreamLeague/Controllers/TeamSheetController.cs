@@ -1,6 +1,7 @@
 ﻿using DreamLeague.DAL;
 using DreamLeague.Inputs;
 using DreamLeague.Models;
+using DreamLeague.Services;
 using DreamLeague.ViewModels;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -17,19 +18,25 @@ namespace DreamLeague.Controllers
         readonly IDreamLeagueContext db;
         readonly ITeamSheetService teamSheetService;
         readonly ITeamSheetUpdater teamSheetUpdater;
+        readonly IPDFService pdfService;
+        readonly IMeetingService meetingService;
 
         public TeamSheetController()
         {
             this.db = new DreamLeagueContext();
             this.teamSheetService = new TeamSheetService(new XLSXTeamSheetReader());
             this.teamSheetUpdater = new TeamSheetUpdater(db);
+            this.meetingService = new MeetingService(db);
+            this.pdfService = new PDFService(db, meetingService);
         }
 
-        public TeamSheetController(IDreamLeagueContext db, ITeamSheetService teamSheetService, ITeamSheetUpdater teamSheetUpdater)
+        public TeamSheetController(IDreamLeagueContext db, ITeamSheetService teamSheetService, ITeamSheetUpdater teamSheetUpdater, IMeetingService meetingService, IPDFService pdfService)
         {
             this.db = db;
             this.teamSheetService = teamSheetService;
             this.teamSheetUpdater = teamSheetUpdater;
+            this.meetingService = meetingService;
+            this.pdfService = pdfService;
         }
 
         public async Task<ActionResult> Index()
@@ -181,7 +188,11 @@ namespace DreamLeague.Controllers
             if (Path.GetExtension(file.FileName) == ".xlsx")
             {
                 var filePath = teamSheetService.Upload(file);
-                teamSheetUpdater.Update(teamSheetService.Get(filePath));
+                var teamSheet = teamSheetService.Get(filePath);
+                teamSheetUpdater.Update(teamSheet);
+
+
+                pdfService.SealedBidBuilder(teamSheet);
             }
 
             return RedirectToAction("Edit");

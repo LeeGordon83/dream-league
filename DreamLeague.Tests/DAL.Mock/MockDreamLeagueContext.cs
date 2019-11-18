@@ -30,6 +30,7 @@ namespace DreamLeague.Tests.DAL.Mock
         public virtual Mock<DbSet<Group>> MockGroups { get; set; }
         public virtual Mock<DbSet<Audit>> MockAudit { get; set; }
 
+
         public MockDreamLeagueContext(bool setMocks = true)
         {
             if (setMocks)
@@ -195,6 +196,7 @@ namespace DreamLeague.Tests.DAL.Mock
             MockEmails.Setup(x => x.FindAsync(It.IsAny<object[]>())).Returns<object[]>(ids => Task.FromResult(EmailData.Data().FirstOrDefault(d => d.EmailId == (int)ids[0])));
             MockContext.Setup(x => x.Emails).Returns(MockEmails.Object);
         }
+
 
         private void SetMockContext()
         {

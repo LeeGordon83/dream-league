@@ -59,6 +59,9 @@
     <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
     </Reference>
+    <Reference Include="IronPdf, Version=2019.7.0.21100, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPdf.2019.7.0\lib\net40\IronPdf.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -243,6 +246,7 @@
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\ResultController.cs" />
     <Compile Include="Controllers\ResultsSheetController.cs" />
+    <Compile Include="Controllers\SealedBidController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\TeamSheetController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
@@ -388,10 +392,12 @@
     <Compile Include="Services\IGameWeekSummaryService.cs" />
     <Compile Include="Services\IMeetingService.cs" />
     <Compile Include="Services\INewsService.cs" />
+    <Compile Include="Services\IPDFService.cs" />
     <Compile Include="Services\ISearchService.cs" />
     <Compile Include="Services\IStatisticsService.cs" />
     <Compile Include="Services\MeetingService.cs" />
     <Compile Include="Services\ResultsService.cs" />
+    <Compile Include="Services\PDFService.cs" />
     <Compile Include="Services\SkySportsNewsService.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\StatisticsService.cs" />
@@ -486,6 +492,7 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Downloads\Default.txt" />
+    <Content Include="Downloads\Sealed Bid Form Html.htm" />
     <Content Include="Elmah\Default.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -513,7 +520,7 @@
     <Content Include="Downloads\Sealed Bid Form Initial.doc" />
     <Content Include="Downloads\Sealed Bid Form.doc" />
     <Content Include="Downloads\Team Sheet.xls" />
-    <None Include="email.config" />
+    <Content Include="email.config" />
     <None Include="Properties\PublishProfiles\Azure.pubxml" />
     <None Include="Properties\PublishProfiles\Magnus.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
@@ -644,6 +651,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ManagerImage\" />
+    <Folder Include="Views\SealedBid\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
